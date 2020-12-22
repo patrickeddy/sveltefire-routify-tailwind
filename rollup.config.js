@@ -1,15 +1,17 @@
-import svelte from 'rollup-plugin-svelte-hot';
-import Hmr from 'rollup-plugin-hot'
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import getConfig from '@roxi/routify/lib/utils/config';
+import autoprefixer from 'autoprefixer';
+import { copySync, removeSync } from 'fs-extra';
+import postcssImport from 'postcss-import';
+import Hmr from 'rollup-plugin-hot';
 import livereload from 'rollup-plugin-livereload';
+import svelte from 'rollup-plugin-svelte-hot';
 import { terser } from 'rollup-plugin-terser';
-import { copySync, removeSync } from 'fs-extra'
-import { spassr } from 'spassr'
-import getConfig from '@roxi/routify/lib/utils/config'
-import autoPreprocess from 'svelte-preprocess'
-import postcssImport from 'postcss-import'
-import { injectManifest } from 'rollup-plugin-workbox'
+import { injectManifest } from 'rollup-plugin-workbox';
+import { spassr } from 'spassr';
+import autoPreprocess from 'svelte-preprocess';
+import tailwindcss from 'tailwindcss';
 
 
 const { distDir } = getConfig() // use Routify's distDir for SSOT
@@ -45,7 +47,7 @@ export default {
         format: 'esm',
         dir: buildDir,
         // for performance, disabling filename hashing in development
-        chunkFileNames:`[name]${production && '-[hash]' || ''}.js`
+        chunkFileNames: `[name]${production && '-[hash]' || ''}.js`
     },
     plugins: [
         svelte({
@@ -55,7 +57,7 @@ export default {
             hot: isNollup,
             preprocess: [
                 autoPreprocess({
-                    postcss: { plugins: [postcssImport()] },
+                    postcss: { plugins: [postcssImport(), tailwindcss, autoprefixer] },
                     defaults: { style: 'postcss' }
                 })
             ]

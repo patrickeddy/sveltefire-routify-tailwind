@@ -8,8 +8,17 @@
     // config goes here
   };
 
-  firebase.initializeApp(firebaseConfig);
+  // firebase.initializeApp(firebaseConfig);
 </script>
+
+<style global>
+  /* purgecss start ignore */
+  @tailwind base;
+  @tailwind components;
+  /* purgecss end ignore */
+
+  @tailwind utilities;
+</style>
 
 <FirebaseApp {firebase}>
   <Router {routes} />
