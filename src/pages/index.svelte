@@ -5,7 +5,7 @@
     metatags.description = "Description coming soon...";
 </script>
 
-<div>
+<article class="prose prose-blue">
     <h1>Some title</h1>
-    <p>Some content.</p>
-</div>
+    <p>Some content. <a href="/">Some link.</a></p>
+</article>

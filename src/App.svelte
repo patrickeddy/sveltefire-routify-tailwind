@@ -12,12 +12,9 @@
 </script>
 
 <style global>
-  /* purgecss start ignore */
-  @tailwind base;
-  @tailwind components;
-  /* purgecss end ignore */
-
-  @tailwind utilities;
+  @import "tailwindcss/base";
+  @import "tailwindcss/components";
+  @import "tailwindcss/utilities";
 </style>
 
 <FirebaseApp {firebase}>
